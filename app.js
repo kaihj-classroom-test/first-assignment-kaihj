@@ -26,15 +26,12 @@ app.use('/', routes);
 app.use('/users', users);
 
 // respond with "hello world" when a GET request is made to the homepage
-app.get('/', function(req, res) {
-  res.send('hello world');
-});
-
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+//app.get('/', function(req, res) {
+//  res.send('hello world');
+//});
 
 app.post('/', function (req, res) {
-  res.send('POST received');
+  //res.send('POST received');
   console.log(req.body);
   res.json(req.body);
 });
