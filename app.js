@@ -32,8 +32,8 @@ app.use('/users', users);
 
 app.post('/', function (req, res) {
   //res.send('POST received');
-  console.log(req.body);
-  res.json(req.body);
+  console.log(req.body.number);
+  res.json(req.body.number);
 });
 
 // catch 404 and forward to error handler
