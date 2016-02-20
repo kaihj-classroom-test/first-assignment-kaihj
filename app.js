@@ -30,8 +30,13 @@ app.get('/', function(req, res) {
   res.send('hello world');
 });
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.post('/', function (req, res) {
   res.send('POST received');
+  console.log(req.body);
+  res.json(req.body);
 });
 
 // catch 404 and forward to error handler
