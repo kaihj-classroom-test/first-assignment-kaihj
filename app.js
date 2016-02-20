@@ -25,6 +25,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function(req, res) {
+  res.send('hello world');
+});
+
+app.post('/', function (req, res) {
+  res.send('POST received');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
