@@ -50,6 +50,9 @@ app.post('/', function (req, res) {
 
   octo.zen.read(cb);
   octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
+
+  octo.repos('KaiOrg', 'meeting-time').issues(19).comments.create(body: 'Hello back to you!! :sparkles:');
+
   //octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
   //octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
 
