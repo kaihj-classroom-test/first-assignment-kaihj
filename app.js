@@ -35,8 +35,8 @@ app.use('/users', users);
 // Using an access token
 // DevJones
 var client = new GitHub({
-    token: "8077901b68f6743f6b1ddb772a23ddcb97b7b053";
-    endpoint: "https:///octodemo.com";
+    token: "8077901b68f6743f6b1ddb772a23ddcb97b7b053",
+    endpoint: "https:///octodemo.com"
 });
 
 // Using an username/password
@@ -53,7 +53,7 @@ app.post('/', function (req, res) {
   var repo = client.repo('KaiOrg/meeting-time');
   // Create an issue in a repository
   repo.createIssue({
-      title: "An awesome issue";
+      title: "An awesome issue"
   });
   console.log('POST received');
 });
