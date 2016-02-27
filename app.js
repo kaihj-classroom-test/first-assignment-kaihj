@@ -37,7 +37,7 @@ app.use('/users', users);
 var client = new GitHub({
   username: "DevJones",
   password: "8077901b68f6743f6b1ddb772a23ddcb97b7b053",
-  endpoint: "https:///octodemo.com"
+  endpoint: "https://octodemo.com"
 });
 
 var repo = client.repo('KaiOrg/meeting-time');
@@ -50,7 +50,7 @@ var repo = client.repo('KaiOrg/meeting-time');
 
 app.post('/', function (req, res) {
   //res.send('POST received');
-  //res.send(req.params.number);
+  res.send(req.params.issue.number);
   //res.json(req.params.number);
   //console.log('POST received');
   // Create an issue in a repository
