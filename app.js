@@ -49,8 +49,8 @@ var repo = client.repo('KaiOrg/meeting-time');
 //});
 
 app.post('/', function (req, res) {
-  //res.send('POST received');
-  res.send(req.params.issue.number);
+  res.send('POST received');
+  //res.send(req.params.issue.number);
   //res.json(req.params.number);
   //console.log('POST received');
   // Create an issue in a repository
