@@ -16,14 +16,6 @@ var octo = new Octokat({
   rootURL: 'https://octodemo.com/api/v3'
 });
 
-// You can omit `cb` and use Promises instead
-var cb = function (err, val) { console.log(val); };
-
-octo.zen.read(cb);
-octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
-//octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
-//octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
-
 var app = express();
 
 // view engine setup
@@ -53,6 +45,14 @@ app.use('/users', users);
 //});
 
 app.post('/', function (req, res) {
+  // You can omit `cb` and use Promises instead
+  var cb = function (err, val) { console.log(val); };
+
+  octo.zen.read(cb);
+  octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
+  //octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
+  //octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
+
   res.send('POST received');
   //res.send(req.params.issue.number);
   //res.json(req.params.number);
