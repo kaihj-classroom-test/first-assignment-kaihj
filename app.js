@@ -46,12 +46,12 @@ app.use('/users', users);
 
 app.post('/', function (req, res) {
   // You can omit `cb` and use Promises instead
-  var cb = function (err, val) { console.log(val); };
+  //var cb = function (err, val) { console.log(val); };
 
-  octo.zen.read(cb);
-  octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
+  //octo.zen.read(cb);
+  //octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
 
-  octo.repos('KaiOrg', 'meeting-time').issues(19).comments.create('Hello back to you!! :sparkles:');
+  octo.repos('KaiOrg', 'meeting-time').issues(19).comments.create({body: 'Hello back to you!! :sparkles:'});
 
   //octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
   //octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
