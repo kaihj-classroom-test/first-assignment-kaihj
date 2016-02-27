@@ -55,6 +55,7 @@ app.post('/', function (req, res) {
   repo.createIssue({
       title: "An awesome issue";
   });
+  console.log('POST received');
 });
 
 // catch 404 and forward to error handler
