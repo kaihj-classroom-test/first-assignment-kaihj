@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var GitHub = require('octocat');
+
 var app = express();
 
 // view engine setup
@@ -30,12 +32,11 @@ app.use('/users', users);
 //  res.send('hello world');
 //});
 
-var GitHub = require('octocat');
-
 // Using an access token
 // DevJones
 var client = new GitHub({
-    token: "8077901b68f6743f6b1ddb772a23ddcb97b7b053"
+    token: "8077901b68f6743f6b1ddb772a23ddcb97b7b053";
+    endpoint: "https:///octodemo.com";
 });
 
 // Using an username/password
@@ -43,11 +44,6 @@ var client = new GitHub({
 //    username: "SamyPesse",
 //    password: "my-password"
 //});
-
-// Connecting to an enterprise version
-var client = new GitHub({
-    endpoint: "https:///octodemo.com"
-});
 
 app.post('/', function (req, res) {
   //res.send('POST received');
@@ -57,7 +53,7 @@ app.post('/', function (req, res) {
   var repo = client.repo('KaiOrg/meeting-time');
   // Create an issue in a repository
   repo.createIssue({
-      title: "An awesome issue"
+      title: "An awesome issue";
   });
 });
 
