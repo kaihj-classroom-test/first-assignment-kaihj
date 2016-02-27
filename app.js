@@ -49,15 +49,16 @@ var repo = client.repo('KaiOrg/meeting-time');
 //});
 
 app.post('/', function (req, res) {
-  //res.send('POST received');
+  res.send('POST received');
   //res.send(req.params.issue.number);
   //res.json(req.params.number);
   //console.log('POST received');
   // Create an issue in a repository
-  repo.createIssue({
-      title: "An awesome issue"
-  });
-  console.log('POST received');
+  //console.log('POST received');
+});
+
+repo.createIssue({
+    title: "An awesome issue"
 });
 
 // catch 404 and forward to error handler
