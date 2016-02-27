@@ -8,7 +8,21 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var GitHub = require('octocat');
+var Octokat = require('octokat');
+
+var octo = new Octokat({
+  username: "DevJones",
+  password: "8077901b68f6743f6b1ddb772a23ddcb97b7b053",
+  rootURL: 'https://octodemo.com/api/v3'
+});
+
+// You can omit `cb` and use Promises instead
+var cb = function (err, val) { console.log(val); };
+
+octo.zen.read(cb);
+octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
+//octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
+//octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
 
 var app = express();
 
@@ -32,16 +46,6 @@ app.use('/users', users);
 //  res.send('hello world');
 //});
 
-// Using an access token
-// DevJones
-var client = new GitHub({
-  username: "DevJones",
-  password: "8077901b68f6743f6b1ddb772a23ddcb97b7b053",
-  endpoint: "https://octodemo.com"
-});
-
-var repo = client.repo('KaiOrg/meeting-time');
-
 // Using an username/password
 //var client = new GitHub({
 //    username: "SamyPesse",
@@ -55,10 +59,6 @@ app.post('/', function (req, res) {
   //console.log('POST received');
   // Create an issue in a repository
   //console.log('POST received');
-});
-
-repo.createIssue({
-    title: "An awesome issue"
 });
 
 // catch 404 and forward to error handler
