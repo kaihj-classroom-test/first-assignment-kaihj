@@ -67,9 +67,9 @@ app.post('/', jsonParser, function (req, res) {
 
   res.send('Comment submitted was: ' + issueComment)
 
-  if(issueComment.indexOf("feedback")) > -1 {
-    octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Looks good to me :+1:'});
-  }
+  //if(issueComment.indexOf("feedback")) > -1 {
+  //  octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Looks good to me :+1:'});
+  //}
 
   //console.log(octo.parse(json).);
 
