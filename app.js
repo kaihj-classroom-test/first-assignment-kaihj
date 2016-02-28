@@ -65,11 +65,11 @@ app.post('/', jsonParser, function (req, res) {
   var issueNumber   = req.body.issue.number;
   var issueComment  = req.body.comment.body;
 
-  res.send('Comment submitted was: ' + issueComment)
+  //res.send('Comment submitted was: ' + issueComment)
 
-  //if(issueComment.indexOf("feedback")) > -1 {
-  //  octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Looks good to me :+1:'});
-  //}
+  if(issueComment.indexOf("feedback") > -1) {
+    octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Looks good to me :+1:'});
+  }
 
   //console.log(octo.parse(json).);
 
