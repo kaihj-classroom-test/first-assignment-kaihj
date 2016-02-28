@@ -57,7 +57,7 @@ app.post('/', jsonParser, function (req, res) {
 
   if((issueComment.indexOf("feedback") > -1) && (issueName.indexOf("(a)") > -1)) {
     octoDev.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I think it's a great idea! :+1:"});
-    sleep(5);
+    sleep.sleep(5);
     octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).labels.add(['enhancement']);
     octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I agree! :smile:. I have just updated the issue label."});
   }
