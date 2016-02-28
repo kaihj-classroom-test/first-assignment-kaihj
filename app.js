@@ -18,6 +18,9 @@ var octo = new Octokat({
 
 var app = express();
 
+// create application/json parser
+var jsonParser = bodyParser.json()
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -44,16 +47,20 @@ app.use('/users', users);
 //    password: "my-password"
 //});
 
-app.post('/', function (req, res) {
+app.post('/', jsonParser, function (req, res) {
   // You can omit `cb` and use Promises instead
   //var cb = function (err, val) { console.log(val); };
 
   //octo.zen.read(cb);
   //octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
 
-  res.setHeader('Content-Type', 'text/plain');
-  res.write('you posted:\n');
-  res.end(JSON.stringify(req.body, null, 2));
+  // this works
+  //res.setHeader('Content-Type', 'text/plain');
+  //res.write('you posted:\n');
+  //res.end(JSON.stringify(req.body, null, 2));
+
+  if (!req.comment.body) return res.sendStatus(400)
+  res.send('Comment submitted was: ' + req.comment.body)
 
   //console.log(octo.parse(json).);
 
