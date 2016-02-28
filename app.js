@@ -51,14 +51,21 @@ app.post('/', function (req, res) {
   //octo.zen.read(cb);
   //octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
 
-  res.send('issue ' + req.params[0]);
+  var json = JSON.parse(req);
 
-  octo.repos('KaiOrg', 'meeting-time').issues(19).comments.create({body: 'Hello back to you!! :sparkles:'});
+  res.send(json.comment.body);
+
+  //console.log(octo.parse(json).);
+
+  //octo.repos('KaiOrg', 'meeting-time').issues.comments.id.fetch();
+
+
+  //octo.repos('KaiOrg', 'meeting-time').issues(19).comments.create({body: 'Hello back to you!! :sparkles:'});
 
   //octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
   //octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
 
-  res.send('POST received');
+  //res.send('POST received');
   //res.send(req.params.issue.number);
   //res.json(req.params.number);
   //console.log('POST received');
