@@ -10,11 +10,18 @@ var users = require('./routes/users');
 
 var Octokat = require('octokat');
 
-var octo = new Octokat({
+var octoDev = new Octokat({
   username: "DevJones",
   password: "8077901b68f6743f6b1ddb772a23ddcb97b7b053",
   rootURL: 'https://octodemo.com/api/v3'
 });
+
+var octoKaren = new Octokat({
+  username: "KarenPeters",
+  password: "a0d83fe62d89441ebe3bd27f521e1da7decdd8e2",
+  rootURL: 'https://octodemo.com/api/v3'
+});
+
 
 var app = express();
 
@@ -36,57 +43,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-// respond with "hello world" when a GET request is made to the homepage
-//app.get('/', function(req, res) {
-//  res.send('hello world');
-//});
-
-// Using an username/password
-//var client = new GitHub({
-//    username: "SamyPesse",
-//    password: "my-password"
-//});
-
 app.post('/', jsonParser, function (req, res) {
-  // You can omit `cb` and use Promises instead
-  //var cb = function (err, val) { console.log(val); };
-
-  //octo.zen.read(cb);
-  //octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
-
-  // this works
-  //res.setHeader('Content-Type', 'text/plain');
-  //res.write('you posted:\n');
-  //res.end(JSON.stringify(req.body, null, 2));
 
   if (!req.body) return res.sendStatus(400)
 
 
   var issueNumber   = req.body.issue.number;
+  var issueName     = req.body.issue.title;
   var issueComment  = req.body.comment.body;
 
-  //res.send('Comment submitted was: ' + issueComment)
 
-  if(issueComment.indexOf("feedback") > -1) {
-    octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I think it's a great idea! :+1:"});
+  if((issueComment.indexOf("feedback") > -1) && (issueName.indexOf("(a)") > -1)) {
+    octoDev.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I think it's a great idea! :+1:"});
+    octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).labels.create({name: 'enhancement'});
+    octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I agree! :smile: I have just updated the issue label."});
   }
 
-  //console.log(octo.parse(json).);
-
-  //octo.repos('KaiOrg', 'meeting-time').issues.comments.id.fetch();
-
-
-  //octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Hello back to you!! :sparkles:'});
-
-  //octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
-  //octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
-
-  //res.send('POST received');
-  //res.send(req.params.issue.number);
-  //res.json(req.params.number);
-  //console.log('POST received');
-  // Create an issue in a repository
-  //console.log('POST received');
 });
 
 // catch 404 and forward to error handler
