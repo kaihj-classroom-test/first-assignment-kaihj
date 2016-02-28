@@ -51,9 +51,9 @@ app.post('/', function (req, res) {
   //octo.zen.read(cb);
   //octo.repos('KaiOrg', 'meeting-time').fetch(cb);    // Fetch repo info
 
-  var json = JSON.parse(req);
-
-  res.send(json.comment.body);
+  res.setHeader('Content-Type', 'text/plain');
+  res.write('you posted:\n');
+  res.end(JSON.stringify(req.body, null, 2));
 
   //console.log(octo.parse(json).);
 
