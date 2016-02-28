@@ -60,14 +60,21 @@ app.post('/', jsonParser, function (req, res) {
   //res.end(JSON.stringify(req.body, null, 2));
 
   if (!req.body) return res.sendStatus(400)
-  res.send('Comment submitted was: ' + req.body.comment.body)
+  //res.send('Comment submitted was: ' + req.body.comment.body)
+
+  var issueNumber   = req.body.issue.number;
+  var issueComment  = req.body.comment.body;
+
+  if(issueComment.indexOf("feedback")) > -1 {
+    octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Looks good to me :+1:'});
+  }
 
   //console.log(octo.parse(json).);
 
   //octo.repos('KaiOrg', 'meeting-time').issues.comments.id.fetch();
 
 
-  //octo.repos('KaiOrg', 'meeting-time').issues(19).comments.create({body: 'Hello back to you!! :sparkles:'});
+  //octo.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: 'Hello back to you!! :sparkles:'});
 
   //octo.me.starred('KaiOrg', 'meeting-time').add(cb); // Star a repo
   //octo.me.starred('KaiOrg', 'meeting-time').remove(cb); // Un-Star a repo
