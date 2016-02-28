@@ -59,8 +59,8 @@ app.post('/', jsonParser, function (req, res) {
   //res.write('you posted:\n');
   //res.end(JSON.stringify(req.body, null, 2));
 
-  if (!req.comment.body) return res.sendStatus(400)
-  res.send('Comment submitted was: ' + req.comment.body)
+  if (!req.body) return res.sendStatus(400)
+  res.send('Comment submitted was: ' + req.body.comment.body)
 
   //console.log(octo.parse(json).);
 
