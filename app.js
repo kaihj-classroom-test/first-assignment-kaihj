@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var sleep = require('sleep');
+
 var Octokat = require('octokat');
 
 var octoDev = new Octokat({
@@ -52,15 +54,12 @@ app.post('/', jsonParser, function (req, res) {
   var issueName     = req.body.issue.title;
   var issueComment  = req.body.comment.body;
 
-  res.send(issueName);
-
 
   if((issueComment.indexOf("feedback") > -1) && (issueName.indexOf("(a)") > -1)) {
     octoDev.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I think it's a great idea! :+1:"});
-    .then() ->
-      octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).labels.add(['enhancement']);
-      .then() ->
-        octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I agree! :smile:. I have just updated the issue label."});
+    sleep(5);
+    octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).labels.add(['enhancement']);
+    octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I agree! :smile:. I have just updated the issue label."});
   }
 
 });
