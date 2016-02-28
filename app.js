@@ -60,7 +60,7 @@ app.post('/', jsonParser, function (req, res) {
     sleep.sleep(5);
     octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).labels.add(['enhancement']);
     sleep.sleep(5);
-    octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I agree! :smile: I have added a label."});
+    octoKaren.repos('KaiOrg', 'meeting-time').issues(issueNumber).comments.create({body: "I agree! :smile:"});
   }
 
 });
