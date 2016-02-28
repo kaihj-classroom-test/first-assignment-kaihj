@@ -52,7 +52,7 @@ app.post('/', jsonParser, function (req, res) {
   var issueName     = req.body.issue.title;
   var issueComment  = req.body.comment.body;
 
-  res.sent(issueName);
+  res.send(issueName);
 
 
   if((issueComment.indexOf("feedback") > -1) && (issueName.indexOf("(a)") > -1)) {
